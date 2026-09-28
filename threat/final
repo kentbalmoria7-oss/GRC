@@ -1,57 +1,29 @@
-# 🛡️ Home Network Asset Inventory & Security Risk Matrix
+# 🛡️ Home Network Asset Inventory
 
-> **Scenario:** Setting up an asset management baseline for a home-based small business network to identify connected devices, assess sensitive data exposure, and apply appropriate security controls.
-
----
-
-## 📌 Executive Summary
-
-In security operations and IT management, **information is the core asset**, and networks serve as the primary medium to access it. Every connected device—from workstations to IoT hardware—represents a potential entry point for unauthorized access or lateral movement.
-
-This project documents a home network inventory to categorize assets based on ownership, function, and access scope, assigning a clear **Sensitivity Level** to prioritize network defense efforts.
+Setting up an asset management inventory for a home-based small business to identify network devices and protect sensitive data.
 
 ---
 
-## 📊 Asset Inventory & Classification Table
+## 📊 Device Inventory
 
-| Asset ID | Device Name & Description | Owner / Role | Location | Connection | Sensitive Data / Access Scope | Sensitivity Level |
+| Device ID | Device Name | Owner | Location | Connection | Sensitive Data / Scope | Sensitivity Level |
 | :---: | :--- | :--- | :--- | :--- | :--- | :---: |
-| `AST-001` | **Workstation Laptop**<br>*(Primary PC)* | Small Business Owner | Home Office | Ethernet / Wi-Fi | Client records, financial files, admin portal access, SOC lab tools. | `HIGH` |
-| `AST-002` | **Personal Smartphone**<br>*(Mobile Device)* | Small Business Owner | Mobile / Housewide | Wi-Fi (5 GHz) | Business email, MFA authenticator app, payment verification tokens. | `MEDIUM` |
-| `AST-003` | **Smart TV / Streaming Unit**<br>*(IoT Device)* | Shared / Household | Living Room | Wi-Fi (2.4 GHz) | Entertainment stream accounts. No business or local file storage. | `LOW` |
+| **AST-001** | Workstation Laptop | Business Owner | Home Office | Ethernet / Wi-Fi | Client records, financial files, admin access | **HIGH** |
+| **AST-002** | Personal Smartphone | Business Owner | Mobile / House | Wi-Fi | Business email, 2FA authenticator apps | **MEDIUM** |
+| **AST-003** | Smart TV | Shared / Household | Living Room | Wi-Fi | Streaming media (No business data) | **LOW** |
 
 ---
 
-## 🏷️ Sensitivity Classification Guide
+## 🏷️ Sensitivity Levels
 
-* 🔴 **`HIGH`**
-  * **Criteria:** Devices storing or directly accessing confidential business data, financial records, or system administrative credentials.
-  * **Impact:** High probability of severe operational and financial damage if compromised.
-* 🟡 **`MEDIUM`**
-  * **Criteria:** Devices handling secondary authentication, communication tools (email/chat), or partial administrative rights.
-  * **Impact:** Moderate operational risk; could be leveraged as a stepping stone to reach High-sensitivity assets.
-* 🟢 **`LOW`**
-  * **Criteria:** Non-essential smart home or consumer IoT devices with no direct access to business files or critical services.
-  * **Impact:** Minimal direct risk of data loss, but poses potential lateral movement risk if left unsegmented.
+- 🔴 **HIGH:** Contains critical business data or admin access. High impact if compromised.
+- 🟡 **MEDIUM:** Holds secondary access like email or 2FA. Moderate risk.
+- 🟢 **LOW:** Household IoT device with no sensitive files. Low direct risk.
 
 ---
 
-## 🔐 Security Control Recommendations
+## 🔐 Recommended Security Steps
 
-1. **Network Segmentation (VLANs):**
-   * Isolate `AST-003` (Smart TV) onto a dedicated IoT/Guest VLAN to prevent traffic sniffing or lateral movement toward `AST-001`.
-2. **Access & Endpoint Protection:**
-   * Enforce Full Disk Encryption (e.g., BitLocker/FileVault) and strong local authentication on `AST-001`.
-   * Enable mandatory Multi-Factor Authentication (MFA) on `AST-002` for all business account access.
-3. **Patch & Vulnerability Management:**
-   * Enable automated firmware and OS updates across all inventoried devices.
-
----
-
-## 📁 Repository Structure
-
-```text
-.
-├── docs/
-│   └── network-diagram.png   # Optional topology map
-└── README.md                 # Primary documentation
+1. **Network Isolation:** Put Smart TVs and IoT devices on a separate Guest/IoT Wi-Fi network.
+2. **Access Control:** Turn on full disk encryption (BitLocker) and 2FA on the business laptop and phone.
+3. **Updates:** Keep all device operating systems updated automatically.
